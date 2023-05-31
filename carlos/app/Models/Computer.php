@@ -9,4 +9,8 @@ class Computer extends Model
 {
     use HasFactory;
     protected $fillable = ['nombre', 'marca','modelo'];
+    public function prestamos(){
+        return $this->hasMany(Prestamo::class);
+    }
+
 }

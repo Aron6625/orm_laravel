@@ -26,6 +26,7 @@ class ComputerObserver
     public function updated(Computer $computer)
     {
         // $computer->getChanges(); // to get old data
+        
         //
     }
 

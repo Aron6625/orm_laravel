@@ -151,3 +151,4 @@ RUN apt-get remove -y git && apt-get autoremove -y && apt-get clean && rm -rf /v
 RUN a2enmod rewrite
 RUN chown -R www-data:www-data /var/www/html/
 RUN usermod -u 197609 www-data
+#change own : chown cambiar propio 

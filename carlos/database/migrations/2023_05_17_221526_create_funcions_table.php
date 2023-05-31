@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComputersTable extends Migration
+class CreateFuncionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateComputersTable extends Migration
      */
     public function up()
     {
-        Schema::create('computers', function (Blueprint $table) {
+        Schema::create('funcions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('marca');
-            $table->string('modelo');
-            $table->integer('estado_id');
 
-            $table->foreign('estado_id')
-                   ->references('id')
-                   ->on('estados');
         });
+
+        DB::table('funcions')->insert(
+            [
+                    ['nombre' =>'prestar computadora'],
+                    ['nombre' =>'registrar computadoras'],
+                    ['nombre' => 'devolucion de computadoras'],
+            ]
+        );
     }
 
     /**
@@ -33,6 +35,6 @@ class CreateComputersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('computers');
+        Schema::dropIfExists('funcions');
     }
 }

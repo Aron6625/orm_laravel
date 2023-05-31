@@ -1,0 +1,18 @@
+id -u 
+docker exec -it residence bash  
+php artisan make:observer ComputerObserver --model=Computer //trigers
+php artisan status 
+php artisan make:model User -m 
+  Estado   /
+  Computer  / 
+  Prestamo  /
+  User      /
+  Session   /
+  User_Rol  /
+  Rol       /
+  Function
+  UI
+
+php artisan make:model -m --force NombreDelModelo
+
+

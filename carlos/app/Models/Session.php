@@ -10,7 +10,7 @@ class Session extends Model
 {
     use HasFactory;
     protected $fillable = ['process_id'];
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     } 

@@ -14,13 +14,14 @@ class CreateSessionsTable extends Migration
     public function up()
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->id();
+            
+            $table->id()->autoIncrement();
             $table->string('process_id');
             $table->integer('user_id');
             
             $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users');
+                ->references('id')
+                ->on('users');
         });
     }
 

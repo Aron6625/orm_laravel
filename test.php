@@ -1,9 +1,9 @@
 <?php
 
-$host        = "host = postgresql";
+$host        = "host = localhost";
 $port        = "port = 5432";
-$dbname      = "dbname = perfectly_spoken";
-$credentials = "user = perfectly_spoken password=perfectly_spoken";
+$dbname      = "dbname = manaco";
+$credentials = "user = manaco password=manaco";
 
 $con = pg_connect("$host $port $dbname $credentials");
 

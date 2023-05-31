@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComputersTable extends Migration
+class CreateUISTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateComputersTable extends Migration
      */
     public function up()
     {
-        Schema::create('computers', function (Blueprint $table) {
+        Schema::create('u_i_s', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('marca');
-            $table->string('modelo');
-            $table->integer('estado_id');
-
-            $table->foreign('estado_id')
-                   ->references('id')
-                   ->on('estados');
         });
-    }
 
+        DB::table('u_i_s')->insert(
+            [
+                    ['nombre' =>'prestamo'],
+                    ['nombre' =>'registro'],
+                    ['nombre' => 'vercomputadoras'],
+            ]
+        );
+    }
     /**
      * Reverse the migrations.
      *
@@ -33,6 +33,6 @@ class CreateComputersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('computers');
+        Schema::dropIfExists('u_i_s');
     }
 }

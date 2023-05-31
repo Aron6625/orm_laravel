@@ -14,9 +14,35 @@ class CreateUserRolsTable extends Migration
     public function up()
     {
         Schema::create('user_rols', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id()->autoIncrement();
+            $table->date('fecha_fin');
+            $table->date('fecha_ini');
+            $table->integer('user_id')->references('id')->on('users');
+            $table->integer('rol_id')->references('id')->on('rols');
         });
+
+        DB::table('user_rols')->insert(
+            [
+                [
+                    'fecha_fin' => '2022-05-21',
+                    'fecha_ini' => '2022-05-21',
+                    'user_id' => 2,
+                    'rol_id' => 1,
+                ],
+                [
+                    'fecha_fin' => '2022-05-21',
+                    'fecha_ini' => '2022-05-21',
+                    'user_id' => 1,
+                    'rol_id' => 2,
+                ],
+                [
+                    'fecha_fin' => '2022-05-21',
+                    'fecha_ini' => '2022-05-21',
+                    'user_id' => 3,
+                    'rol_id' => 1,
+                ],
+            ]
+        );
     }
 
     /**

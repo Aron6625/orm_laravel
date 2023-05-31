@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\Timer\Duration;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/prestamos', function () {
+    dump("hello");
+    return view('prestamos');
 });
 
 Route::get('/greeting', function () {

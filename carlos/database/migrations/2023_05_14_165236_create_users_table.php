@@ -14,10 +14,20 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre_user');
+            $table->id()->primary()->autoIncrement();
+            $table->string('name');
             $table->string('password');
         });
+
+        DB::table('users')->insert(
+            [
+                ['name' => 'Aron', 'password' => '1234'],
+                ['name' => 'Juan', 'password' => '1234'],
+                ['name' => 'Mita', 'password' => '1234'],
+                ['name' => 'Leo', 'password' => '1234'],
+                ['name' => 'Ana', 'password' => '1234'],
+            ]
+        );
     }
 
     /**
