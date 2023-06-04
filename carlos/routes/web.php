@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\Timer\Duration;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +17,32 @@ use SebastianBergmann\Timer\Duration;
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/', function () {
+
+    if(is_null(session('user_id'))) {
+        return redirect('login');
+    }
+
+    $computaras = User::all();
+
+    $interfaces = session('iterfaces');
+
+    return view(
+        'index',
+        [
+            'interface' => $interfaces,
+            'compus' => $computaras,
+        ]
+    );
+});
+
+Route::get('/login', [UserController::class, 'index']);
+
+Route::get('/logout', function () {
+    session()->remove('user_id');
+    session()->remove('interfaces');
+
+    return redirect('login');
 });
 
 Route::get('/prestamos', function () {

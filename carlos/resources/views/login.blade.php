@@ -4,11 +4,6 @@
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
-			@if(session('status'))
-				<div class="alert alert-success mb-1 mt-1">
-					{{ session('status') }}
-				</div>
-			@endif
 			<form action="{{ route('login') }}" class="login" method="POST">
 				@csrf
 				<div class="login__field">

@@ -51,16 +51,26 @@
 </head>
 <body>
 	<nav>
-		<h1></h1>
+		<h1>App Menu</h1>
 		<ul>
+		@foreach ($interface as $item)
+			<li>
+				<a href="{{ $item }}">{{ $item }}</a>
+			</li>
+		@endforeach
 		</ul>
+		<select name="id_estado" class="form-control mb-4">
+      <option selected="selected" disabled>Estado</option>
+		@foreach ($compus as $compu)
+          <option value="{{$compu->id}}">{{$compu->name}}</option>
+		@endforeach
+    </select>
 	</nav>
 	<button id="salir">Cerrar sesión</button>
 	<script type="text/javascript">
 		const button = document.getElementById('salir');
 		button.onclick = () => {
-			document.cookie = 'PHPSESSID=; path=/; expires=Monday, 10 May 1914 00:00:01 GMT';
-			window.location = 'src/login.php'
+			window.location = '/logout'
 		}
 	</script>
 </body>
