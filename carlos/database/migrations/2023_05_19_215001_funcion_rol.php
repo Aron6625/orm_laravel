@@ -19,6 +19,16 @@ class FuncionRol extends Migration
             $table->integer('rol_id')->references('id')->on('rols');
             $table->integer('funcion_id')->references('id')->on('funcions');
         });
+
+        DB::table('funcion_rol')->insert(
+            [
+                ['rol_id' => 2, 'funcion_id' => 1],
+                ['rol_id' => 1, 'funcion_id' => 3],
+                ['rol_id' => 1, 'funcion_id' => 1],
+                ['rol_id' => 1, 'funcion_id' => 2],
+                ['rol_id' => 1, 'funcion_id' => 3],
+            ]
+        );
     }
 
     /**

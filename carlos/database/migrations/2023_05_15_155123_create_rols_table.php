@@ -7,19 +7,19 @@ use Illuminate\Support\Facades\Schema;
 class CreateRolsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations
      *
      * @return void
      */
     public function up()
     {
         Schema::create('rols', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->id();
             $table->string('nombre_rol');
         });
 
         DB::table('rols')->insert(
-            [
+           [
                 ['nombre_rol' => 'Estudiante'], // 1
                 ['nombre_rol' => 'Profesor'], // 2
                 ['nombre_rol' => 'Director'], // 3
