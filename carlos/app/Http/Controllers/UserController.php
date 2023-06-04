@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Session;
 use App\Models\User;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -19,6 +20,19 @@ class UserController extends Controller
 
     function login(Request $request) {
         $data = $request->post();
+        
+        // guardar imagen
+        // $file_path = $request->file('image')->path();
+        // $name =  $file->getClientOriginalName();
+        // $mime = $file->getClientMimeType();
+
+
+        // Image::create([
+        //     'computadora_id' => 3,
+        //     'name' => $name,
+        //     'mime' => $name,
+        //     'image' => str_replace("''", "'", pg_escape_bytea(file_get_contents($file_path)))
+        // ]);
 
         /** @var \Illuminate\Database\Eloquent\Collection */
         $userInferfaces = User::join('user_rols AS ur', 'ur.user_id', '=', 'users.id')
@@ -55,9 +69,19 @@ class UserController extends Controller
         }
     }
 
-    function prestamos(Request $request){
-        $data = $request->post();
+    function images(Request $request){
+        $file = Image::find(3); 
+        // dump($file->image);
+        $name = 'test.png';
+        $name = $file->name;
+        file_put_contents($name , stream_get_contents($file->image));
 
-        return view('prestamos');
+        $headers = array(
+            // "Content-Type: {$file->mime}",
+            "Content-Type: d",
+        );
+        // return view('login');
+
+        return response()->download($name, $name, $headers)->deleteFileAfterSend(true);
     }
 }

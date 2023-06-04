@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
+Route::get('/image', [UserController::class, 'images']);
+
 Route::get('/', function () {
 
     if(is_null(session('user_id'))) {
