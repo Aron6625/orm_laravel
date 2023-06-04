@@ -14,6 +14,7 @@ class ComputerObserver
      */
     public function created(Computer $computer)
     {
+        $user = $_SESSION['user_id'];
         //
     }
 
