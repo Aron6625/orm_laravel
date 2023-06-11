@@ -1,105 +1,88 @@
-<!DOCTYPE html>
-<html>
+<?php
+
+
+?>
 <head>
-  <title>Prestamos de Computadoras</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    
-    h1 {
-      text-align: center;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    tr:hover {
-      background-color: #f5f5f5;
-    }
-    
-    .btn {
-      padding: 6px 12px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    
-    #file-upload {
-      display: none;
-    }
-    
-    #file-label {
-      display: inline-block;
-      padding: 6px 12px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Hello, world!</title>
 </head>
 <body>
-  <h1>Prestamos de Computadoras</h1>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Computadora</th>
-        <th>Imagen</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Estudiante 1</td>
-        <td>Apellido 1</td>
-        <td>
-          <select>
-            <option value="Computadora 1">Computadora 1</option>
-            <option value="Computadora 2">Computadora 2</option>
-            <!-- Agrega más opciones según sea necesario -->
-          </select>
-        </td>
-        <td><input type="file" id="file-upload" accept="image/*"><label for="file-upload" id="file-label">Cargar Imagen</label></td>
-        <td><button class="btn">Asignar</button></td>
-      </tr>
-      <tr>
-        <td>Estudiante 2</td>
-        <td>Apellido 2</td>
-        <td>
-          <select>
-            <option value="Computadora 1">Computadora 1</option>
-            <option value="Computadora 2">Computadora 2</option>
-            <!-- Agrega más opciones según sea necesario -->
-          </select>
-        </td>
-        <td><input type="file" id="file-upload" accept="image/*"><label for="file-upload" id="file-label">Cargar Imagen</label></td>
-        <td><button class="btn">Asignar</button></td>
-      </tr>
-      <!-- Agrega más filas según sea necesario -->
-    </tbody>
-  </table>
-  
-  <script>
-    // Obtener el nombre del archivo seleccionado y mostrarlo en la etiqueta del botón
-    document.getElementById('file-upload').addEventListener('change', function(e) {
-      var fileName = e.target.files[0].name;
-      document.getElementById('file-label').textContent = fileName;
-    });
-  </script>
+  <div class="card mx-auto mt-5" style="width: 35rem;">
+    <div class="card-body">
+      <h1 class="mb-4">Prestamo computadora</h1>
+      <form method="POST">
+      <select name="use_id_user" class="form-control mb-4">
+          <option selected="selected" disabled>Profesor</option>
+          <?php 
+            foreach($profesores as $profesore) {
+              $name = $profesore['usuario'];
+              $id = $profesore['id_usern'];
+
+              echo "<option value=\"$id\">$name</option>";
+            }
+          ?>
+        </select>
+        <select name="id_user" class="form-control mb-4">
+          <option selected="selected" disabled>Estudiante</option>
+          <?php 
+            foreach($estudiantes as $estudiante) {
+              $name = $estudiante['usuario'];
+              $id = $estudiante['id_usern'];
+
+              echo "<option value=\"$id\">$name</option>";
+            }
+          ?>
+        </select>
+        <select name="id_comp" class="form-control mb-4" onchange="showImage(this.value)">
+          <option selected="selected" disabled>Computadora</option>
+          <?php 
+            foreach($computadoras as $computadora) {
+              $name = $computadora['procesador_'];
+              $id = $computadora['id_comp'];
+
+              echo "<option value=\"$id\">$name</option>";
+            }
+          ?>
+        </select>
+        <div id="imageContainer"></div>
+        <input
+          class="form-control mb-4"
+          type="date"
+          name="FECHAPREST"
+          min="2018-01-01"
+          max="2018-12-31"
+        >
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >Prestar</button>
+      </form>
+    </div>
+  </div>
 </body>
-</html>
+<script>
+  function showImage(compId) {
+    var imageContainer = document.getElementById("imageContainer");
+    var selectedComp = <?php echo json_encode($computadoras); ?>;
+    var selectedImage = "";
+
+    for (var i = 0; i < selectedComp.length; i++) {
+      if (selectedComp[i]['id_comp'] == compId) {
+        selectedImage = selectedComp[i]['imagen'];
+        break;
+      }
+    }
+
+    if (selectedImage) {
+      var image = document.createElement("img");
+      image.src = selectedImage;
+      image.style.maxWidth = "300px";
+      image.style.maxHeight = "300px";
+      imageContainer.innerHTML = "";
+      imageContainer.appendChild(image);
+    } else {
+      imageContainer.innerHTML = "";
+    }
+  }
+</script>

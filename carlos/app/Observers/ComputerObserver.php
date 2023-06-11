@@ -23,6 +23,7 @@ class ComputerObserver
                 'user_id' => $userId,
             ]);
         //
+        $file = $request->file('image')
     }
 
     /**
