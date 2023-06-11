@@ -17,6 +17,14 @@ class CreateEstadosTable extends Migration
             $table->id();
             $table->string('estado');
         });
+
+        DB::table('estados')->insert(
+            [
+                    ['estado' =>'viejo'],
+                    ['estado' =>'medio uso'],
+                    ['estado' => 'nuevo'],
+            ]
+        );
     }
 
     /**
@@ -27,5 +35,6 @@ class CreateEstadosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('estados');
+
     }
 }

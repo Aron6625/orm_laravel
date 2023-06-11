@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ComputerController;
+use App\Http\Controllers\contraller_computadora;
 use App\Http\Controllers\UserController;
+use App\Models\estado;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::get('/image', [UserController::class, 'images']);
+
+Route::post('/computer', [ComputerController::class, 'register'])->name('computer');
+// Route::get('/activos', [ComputerController::class, 'activos']);
 
 Route::get('/', function () {
 
@@ -47,9 +53,9 @@ Route::get('/logout', function () {
     return redirect('login');
 });
 
-Route::get('/prestamos', function () {
-    dump("hello");
-    return view('prestamos');
+Route::get('/computer', function () {
+    $estados = estado::all();
+    return view('computer_register',["estados"=>$estados]);
 });
 
 Route::get('/greeting', function () {
