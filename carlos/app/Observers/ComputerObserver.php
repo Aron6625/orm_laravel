@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Models\Bitacora;
 use App\Models\Computer;
+use App\Models\User;
 
 class ComputerObserver
 {
@@ -14,7 +16,12 @@ class ComputerObserver
      */
     public function created(Computer $computer)
     {
-        $user = $_SESSION['user_id'];
+        $user = session("user_id");
+        User::find($user);
+        Bitacora::create([
+                'process_id' => '1',
+                'user_id' => $userId,
+            ]);
         //
     }
 
