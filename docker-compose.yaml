@@ -13,7 +13,6 @@ services:
       - postgresql-data:/var/lib/postgresql/data
   resapp:
     build: .
-    container_name: residence
     hostname: residence
     restart: always
     user: www-data

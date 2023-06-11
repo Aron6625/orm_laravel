@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class User extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre_user', 'password'];
+    protected $fillable = ['name', 'password'];
 
     public function sessions(){
         return $this->hasMany(session::class);

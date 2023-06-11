@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Bitacora extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'datonuevo',
+        'dataviejo',
+        'accion',
+        'fechaaccion',
+        'usern',
+    ];
+    public $timestamps = false;
 }

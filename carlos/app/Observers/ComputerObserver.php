@@ -16,14 +16,15 @@ class ComputerObserver
      */
     public function created(Computer $computer)
     {
-        $user = session("user_id");
-        User::find($user);
+        $user = User::select(['id', 'name'])->find(session('user_id'));
+
         Bitacora::create([
-                'process_id' => '1',
-                'user_id' => $userId,
-            ]);
-        //
-        $file = $request->file('image')
+            'accion' => 'INSERT',
+            'datonuevo' => $computer->toJson(),
+            'usern' => $user->toJson(),
+            'table' => 'computadoras',
+            'fechaaccion' => new \DateTime()
+        ]);
     }
 
     /**
@@ -34,9 +35,6 @@ class ComputerObserver
      */
     public function updated(Computer $computer)
     {
-        // $computer->getChanges(); // to get old data
-        
-        //
     }
 
     /**
