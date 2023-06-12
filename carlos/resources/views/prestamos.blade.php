@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -11,45 +7,40 @@
   <div class="card mx-auto mt-5" style="width: 35rem;">
     <div class="card-body">
       <h1 class="mb-4">Prestamo computadora</h1>
-      <form method="POST">
-      <select name="use_id_user" class="form-control mb-4">
-          <option selected="selected" disabled>Profesor</option>
-          <?php 
-            foreach($profesores as $profesore) {
-              $name = $profesore['usuario'];
-              $id = $profesore['id_usern'];
-
-              echo "<option value=\"$id\">$name</option>";
-            }
-          ?>
+      <form action="{{ route('prestamo')}}" method="POST">
+        @csrf
+        <select name="profesor_id" class="form-control mb-4">
+          <option selected="selected" disabled>User</option>
+          @foreach ($profesores as $profesor)
+            <option value="{{$profesor->id}}">{{$profesor->name}}</option>
+          @endforeach
         </select>
-        <select name="id_user" class="form-control mb-4">
-          <option selected="selected" disabled>Estudiante</option>
-          <?php 
-            foreach($estudiantes as $estudiante) {
-              $name = $estudiante['usuario'];
-              $id = $estudiante['id_usern'];
-
-              echo "<option value=\"$id\">$name</option>";
-            }
-          ?>
         </select>
-        <select name="id_comp" class="form-control mb-4" onchange="showImage(this.value)">
+        <select name="estudiante_id" class="form-control mb-4">
+          <option selected="selected" disabled>User</option>
+          @foreach ($estudiantes as $estudiante)
+            <option value="{{$estudiante->id}}">{{$estudiante->name}}</option>
+          @endforeach
+        </select>
+
+        <select name="computer_id" class="form-control mb-4">
           <option selected="selected" disabled>Computadora</option>
-          <?php 
-            foreach($computadoras as $computadora) {
-              $name = $computadora['procesador_'];
-              $id = $computadora['id_comp'];
-
-              echo "<option value=\"$id\">$name</option>";
-            }
-          ?>
+          @foreach ($computadoras as $computadora)
+            <option value="{{$computadora->id}}">{{$computadora->nombre}}</option>
+          @endforeach
         </select>
-        <div id="imageContainer"></div>
+    <div id="imageContainer"></div>
         <input
           class="form-control mb-4"
           type="date"
-          name="FECHAPREST"
+          name="fecha_prestamo"
+          min="2018-01-01"
+          max="2018-12-31"
+        >
+        <input
+          class="form-control mb-4"
+          type="date"
+          name="fecha_devolucion"
           min="2018-01-01"
           max="2018-12-31"
         >
@@ -85,4 +76,4 @@
       imageContainer.innerHTML = "";
     }
   }
-</script>
+</script>          

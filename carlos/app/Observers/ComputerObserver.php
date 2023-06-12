@@ -21,7 +21,7 @@ class ComputerObserver
         Bitacora::create([
             'accion' => 'INSERT',
             'datonuevo' => $computer->toJson(),
-            'usern' => $user->toJson(),
+            'user' => $user->toJson(),
             'table' => 'computadoras',
             'fechaaccion' => new \DateTime()
         ]);

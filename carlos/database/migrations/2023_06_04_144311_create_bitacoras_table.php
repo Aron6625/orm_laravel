@@ -19,7 +19,9 @@ class CreateBitacorasTable extends Migration
             $table->JSON('dataviejo')->nullable();           
             $table->enum('accion',['DELETE','UPDATE','INSERT','SELECT']);               
             $table->dateTime('fechaaccion');          
-            $table->JSON('usern');
+            $table->JSON('user');
+            $table->string('table');
+            
         });
     }
 

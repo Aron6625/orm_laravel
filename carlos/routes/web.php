@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\contraller_computadora;
+use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\UserController;
 use App\Models\estado;
 use App\Models\User;
@@ -22,8 +23,12 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::get('/image', [UserController::class, 'images']);
 
+Route::get('/prestamos', [PrestamoController::class, 'index']);
+
+Route::post('/prestamos', [PrestamoController::class, 'create'])->name('prestamo');
+
 Route::post('/computer', [ComputerController::class, 'register'])->name('computer');
-// Route::get('/activos', [ComputerController::class, 'activos']);
+// Rhoute::get('/activos', [ComputerController::class, 'activos']);
 
 Route::get('/', function () {
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Computer;
 use App\Models\Prestamo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PrestamoController extends Controller
@@ -14,7 +16,15 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        return view('login');
+
+        $estudiantes = User::join('user_rols AS ur', 'ur.user_id', '=', 'users.id')
+            ->where('ur.id', '=', 1)
+            ->get(['users.id', 'users.name']);
+        $profesores = User::join('user_rols AS ur', 'ur.user_id', '=', 'users.id')
+            ->where('ur.id', '=', 2)
+            ->get(['users.id', 'users.name']);
+        $computers = Computer::all();
+        return view('prestamos',["computadoras"=>$computers,"profesores"=>$profesores,"estudiantes"=>$estudiantes]);
     }
 
     /**
@@ -24,7 +34,9 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        //
+         $prestamo = Prestamo::create(request(['fecha_devolucion', 'fecha_prestamo','computer_id','estudiante_id','profesor_id']));
+        return redirect("/prestamos");
+
     }
 
     /**

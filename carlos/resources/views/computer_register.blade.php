@@ -41,6 +41,7 @@
       type="submit"
       class="btn btn-primary"
     >Submit</button>
+    <a href="/" class="btn"> Volver</a>
       </div>
     </div>
   </form>

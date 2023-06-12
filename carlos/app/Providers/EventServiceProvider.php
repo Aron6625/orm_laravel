@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Computer;
+use App\Models\Prestamo;
 use App\Observers\ComputerObserver;
+use App\Observers\PrestamoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -30,5 +32,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Computer::observe(ComputerObserver::class);
+        Prestamo::observe(PrestamoObserver::class);
     }
 }

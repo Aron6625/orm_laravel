@@ -20,9 +20,9 @@ class CreateUISTable extends Migration
 
         DB::table('u_i_s')->insert(
             [
-                    ['nombre' =>'prestamo'],
-                    ['nombre' =>'registro'],
-                    ['nombre' => 'vercomputadoras'],
+                    ['nombre' =>'prestamos'],
+                    ['nombre' =>'computer'],
+                    ['nombre' =>'vercomputadoras'],
             ]
         );
     }

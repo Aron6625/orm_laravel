@@ -14,7 +14,8 @@ class Bitacora extends Model
         'dataviejo',
         'accion',
         'fechaaccion',
-        'usern',
+        'user',
+        'table',
     ];
     public $timestamps = false;
 }

@@ -59,12 +59,7 @@
 			</li>
 		@endforeach
 		</ul>
-		<select name="id_estado" class="form-control mb-4">
-      <option selected="selected" disabled>Estado</option>
-		@foreach ($compus as $compu)
-          <option value="{{$compu->id}}">{{$compu->name}}</option>
-		@endforeach
-    </select>
+      
 	</nav>
 	<button id="salir">Cerrar sesión</button>
 	<script type="text/javascript">

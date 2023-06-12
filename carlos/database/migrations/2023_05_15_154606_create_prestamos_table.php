@@ -18,12 +18,16 @@ class CreatePrestamosTable extends Migration
             $table->date('fecha_devolucion');
             $table->date('fecha_prestamo');
             $table->integer('computer_id'); 
-            $table->integer('user_id');
+            $table->integer('profesor_id');
+            $table->integer('estudiante_id');
             
             $table->foreign('computer_id')
             ->references('id')
             ->on('computers');
-            $table->foreign('user_id')
+            $table->foreign('profesor_id')
+            ->references('id')
+            ->on('users');
+             $table->foreign('estudiante_id')
             ->references('id')
             ->on('users');
         });
